@@ -1,0 +1,13 @@
+section.team 
+  .container 
+    +blockBox("Who we are", "Meet Our Team","Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo, impedit. Excepturi distinctio voluptatem possimus, modi expedita non eaque consequatur rerum, sapiente magni iusto minima accusamus neque ratione nemo maxime quasi.")
+    .team-list 
+      +teamItem()
+        +teamSocial("#matthew")
+      +teamItem("./images/img-team2.png", "Christopher Campbell", "Branding/UX design")
+        +teamSocial("#christopher")
+      +teamItem("./images/img-team3.png", "Michael Fertig", "Developer")
+        +teamSocial("#michael")
+section.brand 
+  .container 
+    img(src="./images/img-logos.png", alt="img-brand")

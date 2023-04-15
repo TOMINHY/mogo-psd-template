@@ -1,0 +1,73 @@
+
+.people{
+  padding: 10rem 0 3rem;
+  background: linear-gradient(to bottom, rgba(white, 0.9), rgba(white, 0.9)), url("../images/img-people-bg.png") no-repeat center / cover;
+  &-list {
+    @include flexbox(stretch, space-between, row, flex, wrap);
+    margin-top: 9rem;
+    padding: 0 4rem;
+  }
+  &-item{
+    width: calc(50% - 40px);
+    margin-bottom: 7rem;
+    @include flexbox(flex-start, flex-start)
+  }
+  &-avatar {
+    @include size(11.5rem);
+    border-radius: 100rem;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  &-info {
+    padding-left: 3rem;
+  }
+  &-name {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  &-job {
+    display: inline-block;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    color: $title-color;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: 0;
+      @include size(6.5rem, 0.4rem);
+      @include bg($primary-color);
+    }
+  }
+  @include maxWidth(1023.98px) {
+    padding: 5rem 0 1rem;
+    &-list {
+      display: block;
+    }
+    &-item {
+      width: 100%;
+      margin-bottom: 4rem;
+    }
+  }
+  @include maxWidth(767.98px) {
+    &-list {
+      margin-top: 6rem;
+      padding: 0;
+    }
+    &-item {
+      display: block;
+    }
+    &-avatar {
+      @include size(8rem);
+      margin-bottom: 1rem;
+    }
+    &-info {
+      padding-left: 0;
+    }
+    &-desc {
+      @include textClamp(3);
+    }
+  }
+}

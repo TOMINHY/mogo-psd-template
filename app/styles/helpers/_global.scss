@@ -1,0 +1,23 @@
+a,a:hover{
+  text-decoration: none;
+}
+img{
+  max-width: 100%;
+  display: block;
+}
+body{
+  font-family: $primary-font;
+  line-height: 1;
+  font-size: 1.4rem;
+  color: $title-color;
+}
+
+input,
+button {
+  outline: none;
+  font-family: $primary-font;
+  line-height: 1;
+}
+button {
+  cursor: pointer;
+}

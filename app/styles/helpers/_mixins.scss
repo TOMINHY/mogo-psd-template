@@ -1,0 +1,171 @@
+@mixin flexbox(
+  $align-items: stretch,
+  $justify-content: flex-start,
+  $direction: row,
+  $flex: flex,
+  $wrap: nowrap,
+  ){
+  display: $flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+@mixin flexbox2($config:()) {
+  $config:extend(
+    (
+      display: flex,
+      align-items: stretch,
+      justify-content: flex-start,
+      flex-direction: row,
+      flex-wrap: nowrap
+    ),
+    $config
+  );
+  display: map-get($config, display);
+  align-items: map-get($config, align-items);
+  justify-content: map-get($config, justify-content);
+  flex-direction: map-get($config, flex-direction);
+  flex-wrap: map-get($config, flex-wrap);
+}
+
+@mixin hideScroll(){
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin textClamp($rows: 1, $size: 100%){
+  display: -webkit-box;
+  -webkit-line-clamp: $rows;
+  -webkit-box-orient: vertical;
+  background-clip: transparent;
+  overflow: hidden;
+  text-transform: ellipsis;
+  width: $size;
+  max-width: $size;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@mixin absoluteCenter($direction:"left", $position: absolute){
+  position: $position;
+  @if $direction == "left" {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $direction == "top" {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $direction == "both" {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin absoluteFull(){
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin bg($color: red){
+  background-color: $color;
+}
+
+@mixin lineCenter($width: 6rem, $height: 0.4rem, $color: $primary-color, $direction: "left") {
+  content: "";
+  bottom: 0;
+  @include size($width, $height);
+  @include bg($color);
+  @include absoluteCenter($direction);
+}
+
+@mixin hoverEffect($itemClass, $contentClass, $transform: "true") {
+  #{$itemClass}{
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    & > * {
+      transition: transform 0.25s linear;
+      will-change: transform;
+    }
+    #{$contentClass} {
+      opacity: 0;
+      visibility: hidden;
+      @include absoluteFull();
+      @include flexbox(center, center, column);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s linear;
+      background: linear-gradient(
+        to bottom, 
+        rgba($primary-color,0.8), 
+        rgba($secondary-color,0.8)
+        );
+      z-index: 2;
+    }
+    @if $transform == "true" {
+      &:after{
+        content: "";
+        @include absoluteFull();
+        @include bg($third-color);
+        z-index: -1;
+      }
+    }
+    
+    
+    &:hover{
+      #{$contentClass} {
+        opacity: 1;
+        visibility: visible;
+      }
+      @if $transform == "true" {
+        & > * {
+          transform: translate(-1rem, -1rem);
+        }
+      }
+    }
+  }
+}
+
+@mixin touchSlider($width: 80%, $gap: 2.5rem, $padding: 1rem){
+    display: grid !important;
+    grid-auto-columns: $width;
+    grid-auto-flow: column;
+    grid-template-columns: unset;
+    grid-column-gap: $gap;
+    overflow-x: auto;
+    padding: $padding;
+    @include hideScroll();
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    transition: all 0.15s linear;
+  & > * {
+    scroll-snap-align: center;
+    width: auto;
+  }
+}
+
+@mixin size($width, $height: $width){
+  width:$width;
+  height:$height;
+}
+
+@mixin maxWidth($breakpoint){
+  @media screen and (max-width: $breakpoint){
+    @content;
+  }
+}
+
+@mixin minWidth($breakpoint){
+  @media screen and (min-width: $breakpoint){
+    @content;
+  }
+}

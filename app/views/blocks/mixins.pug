@@ -1,0 +1,121 @@
+mixin headerItem(title,href="#")
+  li.header-menu-item 
+    if block 
+      a.header-item-icon(href=href)
+        block 
+    else 
+      a.header-item-link(href=href)= title 
+
+mixin headerBottomItem(number, title)
+  .header-bottom-item 
+    span.header-bottom-number= number
+    span.header-bottom-text= title
+
+mixin wedoItem(src, title, desc, active= "")
+  .wedo-item(class= active)
+    .wedo-item-header 
+      img(src= src, alt="").wedo-item-icon
+      h3.wedo-item-title= title 
+      i.fal.fa-angle-down.wedo-item-arrow
+    .wedo-item-content 
+      .wedo-item-text= desc
+
+//- data = {src: "", alt: "", icon: "", title: ""} -> data.src
+mixin aboutItem(data)
+  .about-item 
+    img(src= data.src, alt= data.alt).about-image
+    .about-content
+      i.about-icon(class= data.icon)
+      span.about-title= data.title 
+
+mixin numberItem(number, title)
+  .number-item 
+    h4.number-item-count= number
+    span.number-item-text= title 
+
+mixin serviceItem(src, title, desc)
+  .service-item 
+    .service-item-icon
+      img(src= src, alt="")
+    .service-item-info
+      h3.service-item-title= title
+      p.service-item-desc= desc 
+
+mixin teamSocial(facebook = "#", twitter = "#", pinterest = "#", instagram = "#")
+  ul.team-social 
+    li.team-social-item 
+      a.team-social-link(href= facebook)
+        i.fab.fa-facebook-f
+    li.team-social-item 
+      a.team-social-link(href= twitter)
+        i.fab.fa-twitter 
+    li.team-social-item 
+      a.team-social-link(href= pinterest)
+        i.fab.fa-pinterest
+    li.team-social-item 
+      a.team-social-link(href= instagram)
+        i.fab.fa-instagram
+
+//- Trong team-item mỗi người dùng sẽ có link-social khác nhau nên phần tách if block thì hiển thị block để qua bên phần html chèn vào để dễ sử lý hơn
+mixin teamItem(src = "./images/img-team1.png", name= "Matthew Dix", position = "Graphic Design")
+  .team-item 
+    .team-main 
+      img(src= src, alt="").team-image
+      .team-content 
+        if block 
+          block 
+    .team-info 
+      h3.team-name= name
+      span.team-position= position
+
+mixin workItem(src = "./images/img-work1.png", icon = "fa fa-home", title = "Creatively Designed", desc = "Lorem ipsum dolor sit", full = "")
+  .work-item(class= full) 
+    img.work-image(src= src)
+    .work-content 
+      i.work-icon(class= icon)
+      h3.work-title= title
+      span.work-desc.text.text--light= desc
+
+mixin peopleItem(src= "./images/img-people4.png", name= "Matthew Dix", job= "Graphic Design", desc= "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero qui fugiat eaque amet possimus placeat sequi aut harum animi, eveniet, fuga dicta rerum")
+  li.people-item 
+    img(src= src, alt="").people-avatar
+    .people-info 
+      h3.people-name= name
+      span.people-job.text.text--light= job
+      p.people-desc.text.text--normal= desc
+
+mixin storyItem(src= "./images/img-blog1.png", dateNumber= 15, dateText= "Jan", title= "Lorem ipsum dolor sit amet", desc = "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", views = 542, comments= 17)
+  li.story-item 
+    .story-media 
+      img.story-image(src= src, alt="")
+      .story-date 
+        span.story-date-number= dateNumber
+        span.story-date-text.text.text--light= dateText
+    h3.story-title= title
+    .story-desc.text 
+      p.story-desc-inner= desc
+    .story-meta 
+      .story-meta-item
+        i.story-meta-icon.fa.fa-eye
+        span.story-meta-number.text= views
+      .story-meta-item
+        i.story-meta-icon.fa.fa-comment
+        span.story-meta-number.text= comments
+
+mixin quoteItem(src= "./images/img-quote.png", type = false, desc = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla fugit nobis debitis beatae nam! Impedit beatae quidem ex illum, amet soluta alias. Minima voluptate dolor corporis deserunt. Nobis, impedit omnis!", author = "Jon Doe")
+  .quote-item 
+    if type == false
+      .quote-icon
+        img(src= src)
+    else 
+      img(src= src).quote-image
+    .quote-info 
+      p.quote-desc= desc
+      span.quote-author= author 
+
+mixin blockBox(caption, title, desc)
+  .block-box
+    h3.block-box-caption= caption 
+    h2.block-box-heading= title 
+    if desc 
+      p.block-box-desc= desc

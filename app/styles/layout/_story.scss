@@ -1,0 +1,124 @@
+.story {
+  padding: 10rem 0;
+  @include bg(white);
+  &-list {
+    @include flexbox(stretch, space-between)
+  }
+  &-item {
+    width: calc(33.33% - 20px);
+  }
+  &-media {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  &-image {
+    @include size(100%, 24rem);
+    object-fit: cover;
+  }
+  &-date {
+    position: absolute;
+    content: "";
+    left: -1rem;
+    bottom: 1rem;
+    padding: 1.5rem 2rem;
+    @include bg($third-color);
+    color: white;
+    @include flexbox(center, center, column, flex);
+    text-align: center;
+    z-index: 2;
+    &-number {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+    &-text {
+      color: white;
+    }
+  }
+  &-title {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    @include textClamp(2);
+  }
+  &-desc {
+    font-style: normal;
+    padding-bottom: 2rem;
+    padding-right: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $border-color;
+  }
+  &-meta {
+    @include flexbox(center);
+  }
+  &-meta-item {
+    margin-right: 2rem;
+  }
+  &-meta-icon {
+    display: inline-block;
+    color: $third-color;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  @include maxWidth(1023.98px) {
+    padding: 5rem 0;
+    &-image {
+      height: 14rem;
+    }
+    &-date {
+      padding: 1rem 1.5rem;
+    }
+    &-title {
+      font-size: 1.2rem;
+    }
+    &-desc {
+      font-size: 1.3rem;
+    }
+    &-desc-inner {
+      @include textClamp(4);
+    }
+  }
+  @include maxWidth(767.98px) {
+    padding-bottom: 0;
+    &-list {
+      display: block;
+    }
+    &-item {
+      width: 100%;
+      margin-bottom: 5rem;
+    }
+    &-image {
+      height: 20rem;
+    }
+    &-date {
+      left: -0.5rem;
+      bottom: 0.5rem;
+    }
+  }
+}
+.map {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom,
+  rgba(white, 0.7),
+  rgba(white, 0.6)),
+  url("../images/img-map.png") no-repeat center / cover;
+  &-content {
+    @include flexbox(center, center, column);
+  }
+  &-image {
+    margin-bottom: 2rem;
+  }
+  &-heading {
+    position: relative;
+    padding-bottom: 2rem;
+    margin-top: 1.5rem;
+    color: $primary-color;
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    &:after {
+      @include lineCenter();
+    }
+  }
+}

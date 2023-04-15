@@ -1,0 +1,46 @@
+.about{
+  padding-top: 9.3rem;
+  padding-bottom:11rem;
+  @include bg(white);
+  &-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 3rem;
+  }
+  &-content{
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 2rem;
+  }
+  &-icon{
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  &-title{
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.4;
+    @include textClamp(2);
+  }
+  @include hoverEffect(".about-item", ".about-content");
+  @include maxWidth(767.98px){
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    &-list{
+      grid-auto-columns: 80%;
+      grid-auto-flow: column;
+      grid-template-columns: unset;
+      overflow-x: auto;
+      padding: 1rem;
+      @include hideScroll();
+      scroll-snap-type: x mandatory;
+      scroll-snap-stop: always;
+      transition: all 0.15s linear;
+    }
+    &-item{
+      scroll-snap-align: center;
+    }
+  }
+}
