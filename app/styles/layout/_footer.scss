@@ -52,6 +52,7 @@
     width: 100%;
     max-width: 38rem;
     @include flexbox;
+    position: relative;
   }
   &-form-input {
     padding: 1.5rem;
@@ -63,6 +64,28 @@
     border-radius: 0;
     font-size: 1.5rem;
     line-height: normal;
+    transition: all 0.2s linear;
+  }
+  &-form-input:focus {
+    background-color: transparent;
+    border-color: $primary-color;
+  }
+  &-form-input:not(:placeholder-shown) + &-form-email,
+  &-form-input:focus + &-form-email {
+    top: 0;
+    color: pink;
+    background-color: white;
+    display: inline-block;
+  }
+  &-form-email{
+    position: absolute;
+    content: "";
+    left: 10px;
+    top: 50%;
+    padding: 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.2s linear;
   }
   &-form-button {
     color: white;

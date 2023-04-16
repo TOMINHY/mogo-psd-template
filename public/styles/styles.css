@@ -1603,7 +1603,8 @@ button {
   -ms-flex-direction: row;
   flex-direction: row;
   -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  position: relative; }
 
 .footer-form-input {
   padding: 1.5rem;
@@ -1614,7 +1615,32 @@ button {
   width: 100%;
   border-radius: 0;
   font-size: 1.5rem;
-  line-height: normal; }
+  line-height: normal;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+
+.footer-form-input:focus {
+  background-color: transparent;
+  border-color: #e98382; }
+
+.footer-form-input:not(:placeholder-shown) + .footer-form-email,
+.footer-form-input:focus + .footer-form-email {
+  top: 0;
+  color: pink;
+  background-color: white;
+  display: inline-block; }
+
+.footer-form-email {
+  position: absolute;
+  content: "";
+  left: 10px;
+  top: 50%;
+  padding: 5px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  pointer-events: none;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
 
 .footer-form-button {
   color: white;
